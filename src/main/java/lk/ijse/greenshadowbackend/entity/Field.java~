@@ -18,10 +18,10 @@ public class Field {
     private String location;
     private String extent;
     @ManyToOne
-    @JoinColumn(name = "crop_code")
+    @JoinColumn(name = "crop_code", nullable = false)
     private Crop crop;
     @ManyToOne
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staff_id", nullable = false)
     private Staff staff;
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage1;

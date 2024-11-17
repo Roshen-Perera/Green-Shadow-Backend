@@ -5,6 +5,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
@@ -12,14 +14,13 @@ import lombok.NoArgsConstructor;
 @Table(name = "Crop")
 public class Crop {
     @Id
-    private String cropCode;
+    private String code;
     private String commonName;
     private String scientificName;
     @Column(columnDefinition = "LONGTEXT")
     private String image;
     private String category;
     private String season;
-    @ManyToOne
-    @JoinColumn(name = "field_code")
-    private Field field;
+    @OneToMany(mappedBy="crop")
+    private List<Field> field;
 }

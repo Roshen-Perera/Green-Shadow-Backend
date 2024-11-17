@@ -30,7 +30,7 @@ public class Staff {
     private String email;
     private String role;
     @OneToMany(mappedBy="staff")
-    private List<Field> field;
+    private Field field;
     @OneToMany(mappedBy = "assignedStaff")
     private List<Vehicle> vehicles;
 }
