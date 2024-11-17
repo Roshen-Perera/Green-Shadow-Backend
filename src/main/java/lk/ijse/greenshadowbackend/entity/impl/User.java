@@ -1,8 +1,9 @@
-package lk.ijse.greenshadowbackend.entity;
+package lk.ijse.greenshadowbackend.entity.impl;
 
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
+import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -12,7 +13,7 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "User")
-public class User {
+public class User implements SuperEntity {
     @Id
     private String email;
     private String password;

@@ -6,7 +6,7 @@ import lk.ijse.greenshadowbackend.customStatusCodes.SelectedEntityErrorStatus;
 import lk.ijse.greenshadowbackend.dao.FieldDAO;
 import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
-import lk.ijse.greenshadowbackend.entity.Field;
+import lk.ijse.greenshadowbackend.entity.impl.Field;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.Mapping;

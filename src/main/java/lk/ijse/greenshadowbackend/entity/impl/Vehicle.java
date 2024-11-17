@@ -1,18 +1,17 @@
-package lk.ijse.greenshadowbackend.entity;
+package lk.ijse.greenshadowbackend.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.Date;
-import java.util.List;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 @Table(name = "Vehicle")
-public class Vehicle {
+public class Vehicle implements SuperEntity {
     @Id
     private String vehicleCode;
     private String licensePlate;

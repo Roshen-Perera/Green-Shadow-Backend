@@ -7,6 +7,8 @@ import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import lk.ijse.greenshadowbackend.util.RegexProcess;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -19,6 +21,8 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/fields")
 public class FieldController {
+    static Logger logger =  LoggerFactory.getLogger(FieldController.class);
+
     @Autowired
    private FieldService fieldService;
 
@@ -29,8 +33,8 @@ public class FieldController {
             @RequestPart ("fieldName") String fieldName,
             @RequestPart ("location") String location,
             @RequestPart ("extent") String extent,
-         //   @RequestPart ("crop_code") String crop_code,
-         //   @RequestPart ("staff_id") String staff_id,
+            @RequestPart ("crop_code") String crop_code,
+           // @RequestPart ("staff_id") String staff_id,
             @RequestPart ("fieldImage1") MultipartFile fieldImage1,
             @RequestPart ("fieldImage2") MultipartFile fieldImage2
     ) {
@@ -46,14 +50,14 @@ public class FieldController {
             if (!RegexProcess.fieldIdMatcher(fieldCode)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-
+            logger.info(crop_code);
             FieldDTO fieldDTO = new FieldDTO();
             fieldDTO.setFieldCode(fieldCode);
             fieldDTO.setFieldName(fieldName);
             fieldDTO.setLocation(location);
             fieldDTO.setExtent(extent);
-            fieldDTO.setCrop_code("N/A");
-            fieldDTO.setStaff_id("N/A");
+            fieldDTO.setCropCode(crop_code);
+            //fieldDTO.setStaff_id(staff_id);
             fieldDTO.setFieldImage1(base64fieldImage1);
             fieldDTO.setFieldImage2(base64fieldImage2);
             fieldService.saveField(fieldDTO);
@@ -103,7 +107,7 @@ public class FieldController {
             @RequestPart ("fieldName") String fieldName,
             @RequestPart ("location") String location,
             @RequestPart ("extent") String extent,
-            //   @RequestPart ("crop_code") String crop_code,
+            @RequestPart ("crop_code") String crop_code,
             //   @RequestPart ("staff_id") String staff_id,
             @RequestPart ("fieldImage1") MultipartFile fieldImage1,
             @RequestPart ("fieldImage2") MultipartFile fieldImage2
@@ -127,8 +131,8 @@ public class FieldController {
             fieldDTO.setFieldName(fieldName);
             fieldDTO.setLocation(location);
             fieldDTO.setExtent(extent);
-            fieldDTO.setCrop_code("N/A");
-            fieldDTO.setStaff_id("N/A");
+            fieldDTO.setCropCode(crop_code);
+            //fieldDTO.setStaff_id("N/A");
             fieldDTO.setFieldImage1(base64fieldImage1);
             fieldDTO.setFieldImage2(base64fieldImage2);
             fieldService.saveField(fieldDTO);

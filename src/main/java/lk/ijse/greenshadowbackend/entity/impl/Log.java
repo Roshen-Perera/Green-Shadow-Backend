@@ -1,6 +1,7 @@
-package lk.ijse.greenshadowbackend.entity;
+package lk.ijse.greenshadowbackend.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -13,7 +14,7 @@ import java.util.List;
 @Data
 @Entity
 @Table(name = "Log")
-public class Log {
+public class Log implements SuperEntity {
     @Id
     private String logCode;
     private Date logDate;

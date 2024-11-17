@@ -8,4 +8,10 @@ public class RegexProcess {
         return regexPattern.matcher(fieldId).matches();
     }
 
+    public static boolean cropIdMatcher(String cropId) {
+        String regexForCropID = "^C\\d{3}$";
+        Pattern regexPattern = Pattern.compile(regexForCropID);
+        return regexPattern.matcher(cropId).matches();
+    }
+
 }

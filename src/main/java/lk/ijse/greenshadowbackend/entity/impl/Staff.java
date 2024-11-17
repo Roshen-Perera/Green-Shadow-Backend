@@ -1,20 +1,21 @@
-package lk.ijse.greenshadowbackend.entity;
+package lk.ijse.greenshadowbackend.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
-import java.util.List;
+
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
 @Entity
 @Table(name = "Staff")
-public class Staff {
+public class Staff implements SuperEntity {
     @Id
-    private String id;
+    private String staffId;
     private String firstName;
     private String lastName;
     private String designation;
@@ -29,8 +30,8 @@ public class Staff {
     private String contactNo;
     private String email;
     private String role;
-    @OneToMany(mappedBy="staff")
-    private Field field;
-    @OneToMany(mappedBy = "assignedStaff")
-    private List<Vehicle> vehicles;
+//    @OneToMany(mappedBy="staff")
+//    private List<Field> field;
+//    @OneToMany(mappedBy = "assignedStaff")
+//    private List<Vehicle> vehicles;
 }
