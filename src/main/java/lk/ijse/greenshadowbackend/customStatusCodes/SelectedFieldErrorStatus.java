@@ -8,7 +8,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Data
-public class SelectedEntityErrorStatus implements FieldStatus {
+public class SelectedFieldErrorStatus implements FieldStatus {
     private int statusCode;
     private String statusMessage;
 }

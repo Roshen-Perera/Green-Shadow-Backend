@@ -40,8 +40,8 @@ public class FieldServiceIMPL implements FieldService {
     @Override
     public FieldStatus getField(String fieldId) {
         if(fieldDao.existsById(fieldId)){
-            var selectedField = fieldDao.getReferenceById(fieldId);
-            return fieldMapping.toFieldDTO(selectedField);
+            var selectedUser = fieldDao.getReferenceById(fieldId);
+            return fieldMapping.toFieldDTO(selectedUser);
         }else {
             return new SelectedFieldErrorStatus(404,"Selected field not found");
         }

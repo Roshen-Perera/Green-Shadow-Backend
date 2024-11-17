@@ -1,6 +1,6 @@
 package lk.ijse.greenshadowbackend.controller;
 import lk.ijse.greenshadowbackend.DataPersistException;
-import lk.ijse.greenshadowbackend.customStatusCodes.SelectedFieldErrorStatus;
+import lk.ijse.greenshadowbackend.customStatusCodes.SelectedEntityErrorStatus;
 import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
 import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
@@ -73,7 +73,7 @@ public class FieldController {
     @GetMapping(value = "/{fieldID}",produces = MediaType.APPLICATION_JSON_VALUE)
     public FieldStatus getSelectedField(@PathVariable ("fieldID") String fieldId){
         if (!RegexProcess.fieldIdMatcher(fieldId)) {
-            return new SelectedFieldErrorStatus(1,"Field ID is not valid");
+            return new SelectedEntityErrorStatus(1,"Field ID is not valid");
         }
         return fieldService.getField(fieldId);
     }

@@ -13,8 +13,6 @@ public class FieldDTO implements FieldStatus {
    private String fieldName;
    private String location;
    private String extent;
-   private String cropCode;
-  // private String staff_id;
    @Column(columnDefinition = "LONGTEXT")
    private String fieldImage1;
    @Column(columnDefinition = "LONGTEXT")

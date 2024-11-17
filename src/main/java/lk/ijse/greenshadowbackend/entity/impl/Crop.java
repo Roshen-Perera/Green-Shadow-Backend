@@ -22,6 +22,7 @@ public class Crop implements SuperEntity {
     private String image;
     private String category;
     private String season;
-    @OneToMany(mappedBy="crop")
-    private List<Field> fields;
+    @ManyToOne
+    @JoinColumn(name = "fieldCode", nullable = false)
+    private Field field;
 }

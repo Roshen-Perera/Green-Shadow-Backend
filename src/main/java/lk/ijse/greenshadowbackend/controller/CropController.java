@@ -1,6 +1,9 @@
 package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.DataPersistException;
+import lk.ijse.greenshadowbackend.customStatusCodes.SelectedCropErrorStatus;
+import lk.ijse.greenshadowbackend.customStatusCodes.SelectedFieldErrorStatus;
+import lk.ijse.greenshadowbackend.dto.CropStatus;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
@@ -11,10 +14,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestPart;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 
 @RestController
@@ -34,7 +34,8 @@ public class CropController {
             @RequestPart ("cropScientificName") String cropScientificName,
             @RequestPart ("cropImage") MultipartFile cropImage,
             @RequestPart ("cropCategory") String cropCategory,
-            @RequestPart ("cropSeason") String cropSeason
+            @RequestPart ("cropSeason") String cropSeason,
+            @RequestPart ("fieldCode") String fieldCode
     ){
         String base64CropImage = "";
         try{
@@ -51,6 +52,7 @@ public class CropController {
             cropDTO.setScientificName(cropScientificName);
             cropDTO.setCategory(cropCategory);
             cropDTO.setSeason(cropSeason);
+            cropDTO.setFieldCode(fieldCode);
             cropDTO.setImage(base64CropImage);
             cropService.saveCrop(cropDTO);
 
@@ -62,5 +64,13 @@ public class CropController {
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.INTERNAL_SERVER_ERROR);
         }
+    }
+
+    @GetMapping(value = "/{cropId}",produces = MediaType.APPLICATION_JSON_VALUE)
+    public CropStatus getSelectedCrop(@PathVariable ("cropId") String cropId) {
+        if (!RegexProcess.cropIdMatcher(cropId)) {
+            return new SelectedCropErrorStatus(1, "Crop ID is not valid");
+        }
+        return cropService.getCrop(cropId);
     }
 }

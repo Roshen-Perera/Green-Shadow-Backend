@@ -7,6 +7,8 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.util.List;
+
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,9 +21,8 @@ public class Field implements SuperEntity {
     private String fieldName;
     private String location;
     private String extent;
-    @ManyToOne
-    @JoinColumn(name = "cropCode", nullable = false)
-    private Crop crop;
+    @OneToMany(mappedBy="field")
+    private List<Crop> crops;
     /*@ManyToOne
     @JoinColumn(name = "staffId")
     private Staff staff;*/
