@@ -3,7 +3,7 @@ import lk.ijse.greenshadowbackend.DataPersistException;
 import lk.ijse.greenshadowbackend.customStatusCodes.SelectedFieldErrorStatus;
 import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
-import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
+import lk.ijse.greenshadowbackend.exception.NotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import lk.ijse.greenshadowbackend.util.RegexProcess;
@@ -90,7 +90,7 @@ public class FieldController {
             }
             fieldService.deleteField(fieldId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (FieldNotFoundException e){
+        }catch (NotFoundException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){

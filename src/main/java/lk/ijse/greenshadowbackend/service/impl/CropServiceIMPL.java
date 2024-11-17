@@ -6,12 +6,14 @@ import lk.ijse.greenshadowbackend.dao.CropDAO;
 import lk.ijse.greenshadowbackend.dto.CropStatus;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.entity.impl.Crop;
+import lk.ijse.greenshadowbackend.exception.NotFoundException;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @Transactional
@@ -33,7 +35,7 @@ public class CropServiceIMPL implements CropService {
 
     @Override
     public List<CropDTO> getAllCrops() {
-        return List.of();
+        return cropMapping.asCropDTOList(cropDAO.findAll());
     }
 
     @Override
@@ -48,7 +50,12 @@ public class CropServiceIMPL implements CropService {
 
     @Override
     public void deleteCrop(String cropId) {
-
+        Optional<Crop> byCropId = cropDAO.findById(cropId);
+        if (!byCropId.isPresent()) {
+            throw new NotFoundException("Crop not found");
+        }else {
+            cropDAO.deleteById(cropId);
+        }
     }
 
     @Override

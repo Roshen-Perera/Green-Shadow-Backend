@@ -7,7 +7,7 @@ import lk.ijse.greenshadowbackend.dao.FieldDAO;
 import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
 import lk.ijse.greenshadowbackend.entity.impl.Field;
-import lk.ijse.greenshadowbackend.exception.FieldNotFoundException;
+import lk.ijse.greenshadowbackend.exception.NotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -51,7 +51,7 @@ public class FieldServiceIMPL implements FieldService {
     public void deleteField(String fieldId) {
         Optional<Field> foundField = fieldDao.findById(fieldId);
         if (!foundField.isPresent()) {
-            throw new FieldNotFoundException("Field not found");
+            throw new NotFoundException("Field not found");
         }else {
             fieldDao.deleteById(fieldId);
         }
