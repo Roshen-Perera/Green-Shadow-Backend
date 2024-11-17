@@ -1,12 +1,15 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
 import jakarta.persistence.*;
+import lk.ijse.greenshadowbackend.entity.Gender;
+import lk.ijse.greenshadowbackend.entity.Role;
 import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.util.Date;
+import java.util.List;
 
 @AllArgsConstructor
 @NoArgsConstructor
@@ -19,19 +22,27 @@ public class Staff implements SuperEntity {
     private String firstName;
     private String lastName;
     private String designation;
-    private String gender;
-    private Date joinedDate;
-    private Date dob;
+    @Enumerated(EnumType.STRING)
+    private Gender gender;
+    private String joinedDate;
+    private String dob;
+    @Column(name = "Building no or name")
     private String addressLine1;
+    @Column(name = "Street no or name")
     private String addressLine2;
+    @Column(name = "City")
     private String addressLine3;
+    @Column(name = "State")
     private String addressLine4;
+    @Column(name = "Postal code")
     private String addressLine5;
     private String contactNo;
     private String email;
-    private String role;
-//    @OneToMany(mappedBy="staff")
-//    private List<Field> field;
-//    @OneToMany(mappedBy = "assignedStaff")
-//    private List<Vehicle> vehicles;
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    @ManyToOne
+    @JoinColumn(name = "fieldCode")
+    private Field field;
+    @OneToMany(mappedBy = "assignedStaff")
+    private List<Vehicle> vehicles;
 }

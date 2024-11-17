@@ -1,8 +1,7 @@
 package lk.ijse.greenshadowbackend.entity.impl;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.Id;
-import jakarta.persistence.Table;
+import jakarta.persistence.*;
+import lk.ijse.greenshadowbackend.entity.Role;
 import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -17,5 +16,6 @@ public class User implements SuperEntity {
     @Id
     private String email;
     private String password;
-    private String role;
+    @Enumerated(EnumType.STRING)
+    private Role role;
 }

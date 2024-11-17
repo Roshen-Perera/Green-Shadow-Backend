@@ -4,7 +4,7 @@ import lk.ijse.greenshadowbackend.DataPersistException;
 import lk.ijse.greenshadowbackend.customStatusCodes.SelectedCropErrorStatus;
 import lk.ijse.greenshadowbackend.dto.CropStatus;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
-import lk.ijse.greenshadowbackend.exception.NotFoundException;
+import lk.ijse.greenshadowbackend.exception.CropNotFoundException;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import lk.ijse.greenshadowbackend.util.RegexProcess;
@@ -89,7 +89,7 @@ public class CropController {
             }
             cropService.deleteCrop(cropId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (NotFoundException e){
+        }catch (CropNotFoundException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){

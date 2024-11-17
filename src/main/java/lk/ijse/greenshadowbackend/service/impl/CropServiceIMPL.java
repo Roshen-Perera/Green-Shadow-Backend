@@ -6,7 +6,7 @@ import lk.ijse.greenshadowbackend.dao.CropDAO;
 import lk.ijse.greenshadowbackend.dto.CropStatus;
 import lk.ijse.greenshadowbackend.dto.impl.CropDTO;
 import lk.ijse.greenshadowbackend.entity.impl.Crop;
-import lk.ijse.greenshadowbackend.exception.NotFoundException;
+import lk.ijse.greenshadowbackend.exception.CropNotFoundException;
 import lk.ijse.greenshadowbackend.service.CropService;
 import lk.ijse.greenshadowbackend.util.Mapping;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -52,7 +52,7 @@ public class CropServiceIMPL implements CropService {
     public void deleteCrop(String cropId) {
         Optional<Crop> byCropId = cropDAO.findById(cropId);
         if (!byCropId.isPresent()) {
-            throw new NotFoundException("Crop not found");
+            throw new CropNotFoundException("Crop not found");
         }else {
             cropDAO.deleteById(cropId);
         }

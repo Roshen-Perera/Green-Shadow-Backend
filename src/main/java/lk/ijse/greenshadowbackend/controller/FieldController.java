@@ -3,7 +3,7 @@ import lk.ijse.greenshadowbackend.DataPersistException;
 import lk.ijse.greenshadowbackend.customStatusCodes.SelectedFieldErrorStatus;
 import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.impl.FieldDTO;
-import lk.ijse.greenshadowbackend.exception.NotFoundException;
+import lk.ijse.greenshadowbackend.exception.CropNotFoundException;
 import lk.ijse.greenshadowbackend.service.FieldService;
 import lk.ijse.greenshadowbackend.util.AppUtil;
 import lk.ijse.greenshadowbackend.util.RegexProcess;
@@ -21,7 +21,7 @@ import java.util.List;
 @RestController
 @RequestMapping("api/v1/fields")
 public class FieldController {
-    static Logger logger =  LoggerFactory.getLogger(FieldController.class);
+            static Logger logger =  LoggerFactory.getLogger(FieldController.class);
 
     @Autowired
    private FieldService fieldService;
@@ -90,7 +90,7 @@ public class FieldController {
             }
             fieldService.deleteField(fieldId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
-        }catch (NotFoundException e){
+        }catch (CropNotFoundException e){
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.NOT_FOUND);
         }catch (Exception e){
