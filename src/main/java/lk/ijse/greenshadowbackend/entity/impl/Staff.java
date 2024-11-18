@@ -43,6 +43,8 @@ public class Staff implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "fieldCode")
     private Field field;
-    @OneToMany(mappedBy = "assignedStaff")
+    @OneToMany(mappedBy = "staff")
     private List<Vehicle> vehicles;
+    @OneToMany(mappedBy = "staff")
+    private List<Equipment> equipments;
 }

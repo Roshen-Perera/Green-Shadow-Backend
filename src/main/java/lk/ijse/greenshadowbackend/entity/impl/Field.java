@@ -25,6 +25,8 @@ public class Field implements SuperEntity {
     private List<Crop> crops;
     @OneToMany(mappedBy="field")
     private List<Staff> staff;
+    @OneToMany(mappedBy="field")
+    private List<Equipment> equipment;
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage1;
     @Column(columnDefinition = "LONGTEXT")

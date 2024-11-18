@@ -20,4 +20,10 @@ public class RegexProcess {
         return regexPattern.matcher(staffId).matches();
     }
 
+    public static boolean vehicleIdMatcher(String vehicleId) {
+        String regexForVehicleID = "^V\\d{3}$";
+        Pattern regexPattern = Pattern.compile(regexForVehicleID);
+        return regexPattern.matcher(vehicleId).matches();
+    }
+
 }

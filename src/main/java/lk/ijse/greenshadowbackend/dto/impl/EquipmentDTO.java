@@ -1,7 +1,9 @@
-package lk.ijse.greenshadowbackend.entity.impl;
+package lk.ijse.greenshadowbackend.dto.impl;
 
 import jakarta.persistence.*;
 import lk.ijse.greenshadowbackend.entity.SuperEntity;
+import lk.ijse.greenshadowbackend.entity.impl.Field;
+import lk.ijse.greenshadowbackend.entity.impl.Staff;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
@@ -11,16 +13,12 @@ import lombok.NoArgsConstructor;
 @Data
 @Entity
 @Table(name = "Equipment")
-public class Equipment implements SuperEntity {
+public class EquipmentDTO implements SuperEntity {
     @Id
     private String equipmentId;
     private String equipmentName;
     private String equipmentType;
     private String equipmentStatus;
-    @ManyToOne
-    @JoinColumn(name = "staff_id")
-    private Staff staff;
-    @ManyToOne
-    @JoinColumn(name = "field_code")
-    private Field field;
+    private String staffId;
+    private String fieldCode;
 }

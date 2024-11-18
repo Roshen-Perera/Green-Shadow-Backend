@@ -10,16 +10,18 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @Data
 @Entity
-@Table(name = "Vehicle")
-public class Vehicle implements SuperEntity {
+@Table(name = "Equipment")
+public class Equipment implements SuperEntity {
     @Id
-    private String vehicleCode;
-    private String licensePlate;
-    private String category;
-    private String fuelType;
-    private String status;
+    private String equipmentId;
+    private String equipmentName;
+    private String equipmentType;
+    private String equipmentStatus;
     @ManyToOne
-    @JoinColumn(name = "staffId", nullable = false)
+    @JoinColumn(name = "staff_id")
     private Staff staff;
-    private String remarks;
+
+    @ManyToOne
+    @JoinColumn(name = "field_code")
+    private Field field;
 }

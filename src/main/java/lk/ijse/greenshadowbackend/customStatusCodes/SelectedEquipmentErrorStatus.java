@@ -1,0 +1,14 @@
+package lk.ijse.greenshadowbackend.customStatusCodes;
+
+import lk.ijse.greenshadowbackend.dto.VehicleStatus;
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+@AllArgsConstructor
+@NoArgsConstructor
+@Data
+public class SelectedEquipmentErrorStatus implements VehicleStatus {
+    private int statusCode;
+    private String statusMessage;
+}
