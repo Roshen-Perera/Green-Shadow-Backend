@@ -1,6 +1,5 @@
 package lk.ijse.greenshadowbackend.customStatusCodes;
 
-import lk.ijse.greenshadowbackend.dto.FieldStatus;
 import lk.ijse.greenshadowbackend.dto.StaffStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;

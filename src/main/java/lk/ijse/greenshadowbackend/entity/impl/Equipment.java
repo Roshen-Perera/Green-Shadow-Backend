@@ -18,9 +18,9 @@ public class Equipment implements SuperEntity {
     private String equipmentType;
     private String equipmentStatus;
     @ManyToOne
-    @JoinColumn(name = "staff_id")
+    @JoinColumn(name = "staffId")
     private Staff staff;
     @ManyToOne
-    @JoinColumn(name = "field_code")
+    @JoinColumn(name = "fieldCode")
     private Field field;
 }

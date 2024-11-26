@@ -8,24 +8,24 @@ public class RegexProcess {
     private static final String LOCATION_PATTERN = "^[A-Za-z0-9 ,.-]{5,100}$"; // Example: Letters, digits, and symbols, 5-100 characters
     private static final String EXTENT_PATTERN = "^[0-9]{1,5}(\\.[0-9]{1,2})?$"; // Example: Numeric, max 5 digits with optional decimal
 
-    public static boolean fieldCodeMatcher(String fieldCode) {
+    public static boolean fieldIdMatcher(String fieldId) {
         Pattern regexPattern = Pattern.compile(FIELD_CODE_PATTERN);
-        return regexPattern.matcher(fieldCode).matches();
+        return regexPattern.matcher(fieldId).matches();
     }
 
-    public static boolean fieldNameMatcher(String fieldName) {
+    public static boolean fieldNameMatcher(String fieldId) {
         Pattern regexPattern = Pattern.compile(FIELD_NAME_PATTERN);
-        return regexPattern.matcher(fieldName).matches();
+        return regexPattern.matcher(fieldId).matches();
     }
 
-    public static boolean fieldLocationMatcher(String fieldLocation) {
+    public static boolean fieldLocationMatcher(String fieldId) {
         Pattern regexPattern = Pattern.compile(LOCATION_PATTERN);
-        return regexPattern.matcher(fieldLocation).matches();
+        return regexPattern.matcher(fieldId).matches();
     }
 
-    public static boolean fieldExtentMatcher(String fieldExtent) {
+    public static boolean fieldExtentMatcher(String fieldId) {
         Pattern regexPattern = Pattern.compile(EXTENT_PATTERN);
-        return regexPattern.matcher(fieldExtent).matches();
+        return regexPattern.matcher(fieldId).matches();
     }
 
     public static boolean cropIdMatcher(String cropId) {

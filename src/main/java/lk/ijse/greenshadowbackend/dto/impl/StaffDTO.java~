@@ -2,7 +2,6 @@ package lk.ijse.greenshadowbackend.dto.impl;
 
 import lk.ijse.greenshadowbackend.dto.StaffStatus;
 import lk.ijse.greenshadowbackend.entity.Gender;
-import lk.ijse.greenshadowbackend.entity.SuperEntity;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;

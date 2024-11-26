@@ -20,6 +20,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("api/v1/fields")
+@CrossOrigin(origins = "http://127.0.0.1:5500")
 public class FieldController {
     static Logger logger =  LoggerFactory.getLogger(FieldController.class);
 
@@ -33,8 +34,6 @@ public class FieldController {
             @RequestPart ("fieldName") String fieldName,
             @RequestPart ("location") String location,
             @RequestPart ("extent") String extent,
-           // @RequestPart ("crop_code") String crop_code,
-           // @RequestPart ("staff_id") String staff_id,
             @RequestPart ("fieldImage1") MultipartFile fieldImage1,
             @RequestPart ("fieldImage2") MultipartFile fieldImage2
     ) {
@@ -47,16 +46,27 @@ public class FieldController {
             byte[] imageBytes2 = fieldImage2.getBytes();
             base64fieldImage2 = AppUtil.picToBase64(imageBytes2);
 
-            if (!RegexProcess.fieldIdMatcher(fieldCode)) {
+            if (!   RegexProcess.fieldCodeMatcher(fieldCode)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+
+            if(!RegexProcess.fieldNameMatcher(fieldName)){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(!RegexProcess.fieldLocationMatcher(location)){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(!RegexProcess.fieldExtentMatcher(extent)){
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
             FieldDTO fieldDTO = new FieldDTO();
             fieldDTO.setFieldCode(fieldCode);
             fieldDTO.setFieldName(fieldName);
             fieldDTO.setLocation(location);
             fieldDTO.setExtent(extent);
-           // fieldDTO.s(crop_code);
-            //fieldDTO.setStaff_id(staff_id);
             fieldDTO.setFieldImage1(base64fieldImage1);
             fieldDTO.setFieldImage2(base64fieldImage2);
             fieldService.saveField(fieldDTO);
@@ -72,7 +82,7 @@ public class FieldController {
 
     @GetMapping(value = "/{fieldID}",produces = MediaType.APPLICATION_JSON_VALUE)
     public FieldStatus getSelectedField(@PathVariable ("fieldID") String fieldId){
-        if (!RegexProcess.fieldIdMatcher(fieldId)) {
+        if (RegexProcess.fieldCodeMatcher(fieldId)) {
             return new SelectedFieldErrorStatus(1,"Field ID is not valid");
         }
         return fieldService.getField(fieldId);
@@ -85,7 +95,7 @@ public class FieldController {
     @DeleteMapping(value = "/{fieldId}")
     public ResponseEntity<Void> deleteField(@PathVariable ("fieldId") String fieldId){
         try {
-            if (!RegexProcess.fieldIdMatcher(fieldId)) {
+            if (RegexProcess.fieldCodeMatcher(fieldId)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             fieldService.deleteField(fieldId);
@@ -120,7 +130,7 @@ public class FieldController {
             byte[] imageBytes2 = fieldImage2.getBytes();
             base64fieldImage2 = AppUtil.picToBase64(imageBytes2);
 
-            if (!RegexProcess.fieldIdMatcher(fieldCode)) {
+            if (RegexProcess.fieldCodeMatcher(fieldCode)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 

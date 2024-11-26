@@ -1,6 +1,5 @@
 package lk.ijse.greenshadowbackend.customStatusCodes;
 
-import lk.ijse.greenshadowbackend.dto.StaffStatus;
 import lk.ijse.greenshadowbackend.dto.VehicleStatus;
 import lombok.AllArgsConstructor;
 import lombok.Data;
