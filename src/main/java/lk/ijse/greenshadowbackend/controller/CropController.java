@@ -46,6 +46,7 @@ public class CropController {
             base64CropImage = AppUtil.picToBase64(imageBytes);
 
             if (!RegexProcess.cropIdMatcher(cropCode)) {
+                logger.info("Crop ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
@@ -61,6 +62,7 @@ public class CropController {
 
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
+            logger.info("Data persist error");
             e.printStackTrace();
             return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
         }catch (Exception e){
@@ -86,6 +88,7 @@ public class CropController {
     public ResponseEntity<Void> deleteCrop(@PathVariable ("cropId") String cropId){
         try {
             if (!RegexProcess.cropIdMatcher(cropId)) {
+                logger.info("Crop ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             cropService.deleteCrop(cropId);
@@ -114,7 +117,7 @@ public class CropController {
             byte[] imageBytes = cropImage.getBytes();
             base64CropImage = AppUtil.picToBase64(imageBytes);
 
-            if (!RegexProcess.cropIdMatcher(cropCode)) {
+            if (RegexProcess.cropIdMatcher(cropCode)) {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 

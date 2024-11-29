@@ -8,6 +8,7 @@ public class RegexProcess {
     private static final String LOCATION_PATTERN = "^[A-Za-z0-9 ,.-]{5,100}$"; // Example: Letters, digits, and symbols, 5-100 characters
     private static final String EXTENT_PATTERN = "^[0-9]{1,5}(\\.[0-9]{1,2})?$"; // Example: Numeric, max 5 digits with optional decimal
 
+    private static final String CROP_CODE_PATTERN = "^C\\d{3}$"; // Example: Alphanumeric, 3-10 characters
     public static boolean fieldCodeMatcher(String fieldCode) {
         Pattern regexPattern = Pattern.compile(FIELD_CODE_PATTERN);
         return regexPattern.matcher(fieldCode).matches();
@@ -29,8 +30,7 @@ public class RegexProcess {
     }
 
     public static boolean cropIdMatcher(String cropId) {
-        String regexForCropID = "^C\\d{3}$";
-        Pattern regexPattern = Pattern.compile(regexForCropID);
+        Pattern regexPattern = Pattern.compile(CROP_CODE_PATTERN);
         return regexPattern.matcher(cropId).matches();
     }
 

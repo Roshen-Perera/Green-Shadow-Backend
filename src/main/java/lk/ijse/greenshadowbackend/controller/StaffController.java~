@@ -5,7 +5,6 @@ import lk.ijse.greenshadowbackend.customStatusCodes.SelectedStaffErrorStatus;
 import lk.ijse.greenshadowbackend.dto.StaffStatus;
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
 import lk.ijse.greenshadowbackend.dto.impl.StaffDTO;
-import lk.ijse.greenshadowbackend.entity.Gender;
 import lk.ijse.greenshadowbackend.entity.Role;
 import lk.ijse.greenshadowbackend.exception.StaffNotFoundException;
 import lk.ijse.greenshadowbackend.service.StaffService;
@@ -56,7 +55,7 @@ public class StaffController {
             staffDTO.setFirstName(firstName);
             staffDTO.setLastName(lastName);
             staffDTO.setDesignation(designation);
-            staffDTO.setGender(Gender.valueOf(gender.toUpperCase())); // Assuming you have a Gender enum.
+            staffDTO.setRole(Role.valueOf(role.toUpperCase()));
             staffDTO.setJoinedDate(joinedDate);
             staffDTO.setDob(dob);
             staffDTO.setAddressLine1(addressLine1);
