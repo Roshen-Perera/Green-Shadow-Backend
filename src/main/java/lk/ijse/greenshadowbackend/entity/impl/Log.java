@@ -17,9 +17,12 @@ import java.util.List;
 public class Log implements SuperEntity {
     @Id
     private String logCode;
-    private Date logDate;
+    private String logDate;
     private String details;
+
+    @Column(columnDefinition = "LONGTEXT")
     private String observedImage;
+
     @ManyToOne
     @JoinColumn(name = "fieldCode", nullable = false)
     private Field field;
