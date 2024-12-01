@@ -31,4 +31,6 @@ public class Field implements SuperEntity {
     private String fieldImage1;
     @Column(columnDefinition = "LONGTEXT")
     private String fieldImage2;
+    @OneToMany(mappedBy="field")
+    private List <Log> logs;
 }

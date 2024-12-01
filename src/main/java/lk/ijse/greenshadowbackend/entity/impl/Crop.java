@@ -25,4 +25,6 @@ public class Crop implements SuperEntity {
     @ManyToOne
     @JoinColumn(name = "fieldCode", nullable = false)
     private Field field;
+    @OneToMany(mappedBy="crop")
+    private List <Log> logs;
 }
