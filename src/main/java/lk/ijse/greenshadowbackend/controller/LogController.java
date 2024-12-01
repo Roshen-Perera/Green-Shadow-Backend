@@ -85,14 +85,14 @@ public class LogController {
         return logService.getAllLogs();
     }
 
-    @DeleteMapping(value = "/{cropId}")
-    public ResponseEntity<Void> deleteLog(@PathVariable ("cropId") String cropId){
+    @DeleteMapping(value = "/{logId}")
+    public ResponseEntity<Void> deleteLog(@PathVariable ("logId") String logId){
         try {
-            if (!RegexProcess.cropIdMatcher(cropId)) {
+            if (!RegexProcess.logIdMatcher(logId)) {
                 logger.info("Log ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            logService.deleteLog(cropId);
+            logService.deleteLog(logId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (LogNotFoundException e){
             e.printStackTrace();
