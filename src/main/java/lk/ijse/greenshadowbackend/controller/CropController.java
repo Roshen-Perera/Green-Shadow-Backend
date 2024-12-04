@@ -50,6 +50,21 @@ public class CropController {
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
+            if (!RegexProcess.cropNameMatcher(cropName)) {
+                logger.info("Crop name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.cropScientificNameMatcher(cropScientificName)) {
+                logger.info("Crop scientific name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.cropCategoryMatcher(cropCategory)) {
+                logger.info("Crop category is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
             CropDTO cropDTO = new CropDTO();
             cropDTO.setCode(cropCode);
             cropDTO.setCommonName(cropName);
@@ -59,7 +74,7 @@ public class CropController {
             cropDTO.setFieldCode(fieldCode);
             cropDTO.setImage(base64CropImage);
             cropService.saveCrop(cropDTO);
-
+            logger.info("Crop saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
             logger.info("Data persist error");
@@ -74,13 +89,16 @@ public class CropController {
     @GetMapping(value = "/{cropId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public CropStatus getSelectedCrop(@PathVariable ("cropId") String cropId) {
         if (!RegexProcess.cropIdMatcher(cropId)) {
+            logger.info("Crop ID is not valid");
             return new SelectedCropErrorStatus(1, "Crop ID is not valid");
         }
+        logger.info("Crop fetched");
         return cropService.getCrop(cropId);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<CropDTO> getAllCrops() {
+        logger.info("All crops fetched");
         return cropService.getAllCrops();
     }
 
@@ -118,6 +136,21 @@ public class CropController {
             base64CropImage = AppUtil.picToBase64(imageBytes);
 
             if (RegexProcess.cropIdMatcher(cropCode)) {
+                logger.info("Crop ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if (!RegexProcess.cropNameMatcher(cropName)) {
+                logger.info("Crop name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.cropScientificNameMatcher(cropScientificName)) {
+                logger.info("Crop scientific name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.cropCategoryMatcher(cropCategory)) {
+                logger.info("Crop category is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
@@ -130,7 +163,7 @@ public class CropController {
             cropDTO.setFieldCode(fieldCode);
             cropDTO.setImage(base64CropImage);
             cropService.saveCrop(cropDTO);
-
+            logger.info("Crop updated");
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
             e.printStackTrace();

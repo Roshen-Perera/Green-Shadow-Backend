@@ -49,6 +49,63 @@ public class StaffController {
     ) {
         try {
             if (!RegexProcess.staffIdMatcher(staffId)) {
+                logger.info("Staff ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffFirstNameMatcher(firstName)){
+                logger.info("First name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffLastNameMatcher(lastName)){
+                logger.info("Last name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffDesignationMatcher(designation)){
+                logger.info("Designation is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffGenderMatcher(gender)){
+                logger.info("Gender is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffJoinedDateMatcher(joinedDate)){
+                logger.info("Joined date is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffDobMatcher(dob)){
+                logger.info("Date of birth is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffAddress2Matcher(addressLine2)) {
+                logger.info("Address line 2 is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffAddress3Matcher(addressLine3)) {
+                logger.info("Address line 3 is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffAddress4Matcher(addressLine4)) {
+                logger.info("Address line 4 is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffAddress5Matcher(addressLine5)) {
+                logger.info("Address line 5 is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if(!RegexProcess.staffContactNoMatcher(contactNo)){
+                logger.info("Contact number is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if (!RegexProcess.staffEmailMatcher(email)) {
+                logger.info("Email is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if (!RegexProcess.staffRoleMatcher(role)) {
+                logger.info("Role is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+            if (!RegexProcess.staffFieldCodeMatcher(fieldCode)) {
+                logger.info("Field code is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
             StaffDTO staffDTO = new StaffDTO();

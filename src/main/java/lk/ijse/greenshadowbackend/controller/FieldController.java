@@ -45,19 +45,23 @@ public class FieldController {
             byte[] imageBytes2 = fieldImage2.getBytes();
             base64fieldImage2 = AppUtil.picToBase64(imageBytes2);
 
-            if (!   RegexProcess.fieldCodeMatcher(fieldCode)) {
+            if (!RegexProcess.fieldCodeMatcher(fieldCode)) {
+                logger.error("Field Code is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
             if(!RegexProcess.fieldNameMatcher(fieldName)){
+                logger.error("Field Name is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
             if(!RegexProcess.fieldLocationMatcher(location)){
+                logger.error("Field Location is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
             if(!RegexProcess.fieldExtentMatcher(extent)){
+                logger.error("Field Extent is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
@@ -69,6 +73,7 @@ public class FieldController {
             fieldDTO.setFieldImage1(base64fieldImage1);
             fieldDTO.setFieldImage2(base64fieldImage2);
             fieldService.saveField(fieldDTO);
+            logger.info("Field saved");
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
             e.printStackTrace();
@@ -82,12 +87,15 @@ public class FieldController {
     @GetMapping(value = "/{fieldID}",produces = MediaType.APPLICATION_JSON_VALUE)
     public FieldStatus getSelectedField(@PathVariable ("fieldID") String fieldId){
         if (!RegexProcess.fieldCodeMatcher(fieldId)) {
+            logger.error("Field ID is not valid");
             return new SelectedFieldErrorStatus(1,"Field ID is not valid");
         }
+        logger.info("Field fetched");
         return fieldService.getField(fieldId);
     }
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<FieldDTO> getAllFields() {
+        logger.info("All fields fetched");
         return fieldService.getAllFields();
     }
 
@@ -95,8 +103,10 @@ public class FieldController {
     public ResponseEntity<Void> deleteField(@PathVariable ("fieldId") String fieldId){
         try {
             if (RegexProcess.fieldCodeMatcher(fieldId)) {
+                logger.error("Field ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+            logger.info("Field deleted");
             fieldService.deleteField(fieldId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (CropNotFoundException e){
@@ -129,7 +139,23 @@ public class FieldController {
             byte[] imageBytes2 = fieldImage2.getBytes();
             base64fieldImage2 = AppUtil.picToBase64(imageBytes2);
 
-            if (RegexProcess.fieldCodeMatcher(fieldCode)) {
+            if (!RegexProcess.fieldCodeMatcher(fieldCode)) {
+                logger.error("Field Code is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(!RegexProcess.fieldNameMatcher(fieldName)){
+                logger.error("Field Name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(!RegexProcess.fieldLocationMatcher(location)){
+                logger.error("Field Location is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if(!RegexProcess.fieldExtentMatcher(extent)){
+                logger.error("Field Extent is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
