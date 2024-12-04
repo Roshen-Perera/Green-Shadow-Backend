@@ -37,6 +37,32 @@ public class EquipmentController {
     ){
         try {
             if (!RegexProcess.equipmentIdMatcher(equipmentId)) {
+                logger.info("Equipment ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentNameMatcher(equipmentName)) {
+                logger.info("Equipment name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentTypeMatcher(equipmentType)) {
+                logger.info("Equipment type is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentStatusMatcher(equipmentStatus)) {
+                logger.info("Equipment status is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.staffIdMatcher(staffId)) {
+                logger.info("Staff ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.fieldCodeMatcher(fieldCode)) {
+                logger.info("Field code is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
@@ -49,6 +75,7 @@ public class EquipmentController {
             equipmentDTO.setFieldCode(fieldCode);
 
             equipmentService.saveEquipment(equipmentDTO);
+            logger.info("Equipment saved successfully");
             return new ResponseEntity<>(HttpStatus.CREATED);
         }catch (DataPersistException e){
             e.printStackTrace();
@@ -61,13 +88,16 @@ public class EquipmentController {
     @GetMapping(value = "/{equipmentId}",produces = MediaType.APPLICATION_JSON_VALUE)
     public EquipmentStatus getSelectedEquipment(@PathVariable ("equipmentId") String equipmentId) {
         if (!RegexProcess.equipmentIdMatcher(equipmentId)) {
+            logger.error("Equipment ID is not valid");
             return new SelectedEquipmentErrorStatus(1, "Equipment ID is not valid");
         }
+        logger.info("Equipment fetched");
         return equipmentService.getEquipment(equipmentId);
     }
 
     @GetMapping(produces = MediaType.APPLICATION_JSON_VALUE)
     public List<EquipmentDTO> getAllEquipments() {
+        logger.info("All equipments fetched");
         return equipmentService.getAllEquipments();
     }
 
@@ -75,8 +105,10 @@ public class EquipmentController {
     public ResponseEntity<Void> deleteEquipment(@PathVariable ("equipmentId") String equipmentId){
         try {
             if (!RegexProcess.equipmentIdMatcher(equipmentId)) {
+                logger.info("Equipment ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
+            logger.info("Equipment deleted");
             equipmentService.deleteEquipment(equipmentId);
             return new ResponseEntity<>(HttpStatus.NO_CONTENT);
         }catch (EquipmentNotFoundException e){
@@ -99,6 +131,32 @@ public class EquipmentController {
     ) {
         try {
             if (!RegexProcess.equipmentIdMatcher(equipmentId)) {
+                logger.info("Equipment ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentNameMatcher(equipmentName)) {
+                logger.info("Equipment name is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentTypeMatcher(equipmentType)) {
+                logger.info("Equipment type is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.equipmentStatusMatcher(equipmentStatus)) {
+                logger.info("Equipment status is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.staffIdMatcher(staffId)) {
+                logger.info("Staff ID is not valid");
+                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+            }
+
+            if (!RegexProcess.fieldCodeMatcher(fieldCode)) {
+                logger.info("Field code is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
 
@@ -109,7 +167,7 @@ public class EquipmentController {
             equipmentDTO.setEquipmentStatus(equipmentStatus);
             equipmentDTO.setStaffId(staffId);
             equipmentDTO.setFieldCode(fieldCode);
-
+            logger.info("Equipment updated successfully");
             equipmentService.saveEquipment(equipmentDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);
         } catch (DataPersistException e) {
