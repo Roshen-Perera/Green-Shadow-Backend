@@ -2,6 +2,7 @@ package lk.ijse.greenshadowbackend.controller;
 
 import lk.ijse.greenshadowbackend.DataPersistException;
 import lk.ijse.greenshadowbackend.customStatusCodes.SelectedEquipmentErrorStatus;
+import lk.ijse.greenshadowbackend.customStatusCodes.SelectedUserErrorStatus;
 import lk.ijse.greenshadowbackend.dto.EquipmentStatus;
 import lk.ijse.greenshadowbackend.dto.impl.EquipmentDTO;
 import lk.ijse.greenshadowbackend.exception.EquipmentNotFoundException;
@@ -167,6 +168,7 @@ public class EquipmentController {
             equipmentDTO.setEquipmentStatus(equipmentStatus);
             equipmentDTO.setStaffId(staffId);
             equipmentDTO.setFieldCode(fieldCode);
+
             logger.info("Equipment updated successfully");
             equipmentService.saveEquipment(equipmentDTO);
             return new ResponseEntity<>(HttpStatus.CREATED);

@@ -12,8 +12,20 @@ import java.util.List;
 
 @Component
 public class Mapping {
+
     @Autowired
     private ModelMapper modelMapper;
+
+    public User toUserEntity(UserDTO userDTO) {
+        return modelMapper.map(userDTO, User.class);
+    }
+    public UserDTO toUserDTO(User userEntity) {
+        return modelMapper.map(userEntity, UserDTO.class);
+    }
+    public List<UserDTO> asUserDTOList(List<User> userEntities) {
+        return modelMapper.map(userEntities, new TypeToken<List<UserDTO>>() {}.getType());
+    }
+
     public Field toFieldEntity(FieldDTO fieldDTO) {
         return modelMapper.map(fieldDTO, Field.class);
     }

@@ -35,7 +35,7 @@ public class RegexProcess {
     private static final String VEHICLE_ID_PATTERN = "^V\\d{3}$"; // Example: Alphanumeric, 3-10 characters
     private static final String VEHICLE_CATEGORY_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String VEHICLE_FUEL_TYPE_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
-    private static final String VEHICLE_LICENSE_PLATE_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
+    private static final String VEHICLE_LICENSE_PLATE_PATTERN = "^([a-zA-Z]{1,3}|([0-9]{1,3}))-[0-9]{4}";   // Example: Letters and spaces, 3-50 characters
     private static final String VEHICLE_STATUS_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String VEHICLE_REMARKS_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String VEHICLE_STAFF_PATTERN = "^S\\d{3}$";   // Example: Letters and spaces, 3-50 characters
@@ -55,7 +55,7 @@ public class RegexProcess {
     private static final String LOG_DETAILS_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
 
     private static final String USER_NAME_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
-    private static final String USER_EMAIL_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
+    private static final String USER_EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";   // Example: Letters and spaces, 3-50 characters
     private static final String USER_PASSWORD_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
 
     public static boolean fieldCodeMatcher(String fieldCode) {
@@ -202,6 +202,11 @@ public class RegexProcess {
 
     public static boolean vehicleFuelTypeMatcher(String vehicleFuelType) {
         Pattern regexPattern = Pattern.compile(VEHICLE_FUEL_TYPE_PATTERN);
+        return regexPattern.matcher(vehicleFuelType).matches();
+    }
+
+    public static boolean vehicleLicensePlateMatcher(String vehicleFuelType) {
+        Pattern regexPattern = Pattern.compile(VEHICLE_LICENSE_PLATE_PATTERN);
         return regexPattern.matcher(vehicleFuelType).matches();
     }
 

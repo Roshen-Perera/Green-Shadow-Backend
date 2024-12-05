@@ -68,14 +68,14 @@ public class StaffController {
                 logger.info("Gender is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
-            if(!RegexProcess.staffJoinedDateMatcher(joinedDate)){
-                logger.info("Joined date is not valid");
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
-            if(!RegexProcess.staffDobMatcher(dob)){
-                logger.info("Date of birth is not valid");
-                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
-            }
+//            if(!RegexProcess.staffJoinedDateMatcher(joinedDate)){
+//                logger.info("Joined date is not valid");
+//                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//            }
+//            if(!RegexProcess.staffDobMatcher(dob)){
+//                logger.info("Date of birth is not valid");
+//                return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
+//            }
             if(!RegexProcess.staffAddress2Matcher(addressLine2)) {
                 logger.info("Address line 2 is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);

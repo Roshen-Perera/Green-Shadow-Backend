@@ -101,7 +101,7 @@ public class FieldController {
     @DeleteMapping(value = "/{fieldId}")
     public ResponseEntity<Void> deleteField(@PathVariable ("fieldId") String fieldId){
         try {
-            if (!RegexProcess.fieldCodeMatcher(fieldId)) {
+            if (RegexProcess.fieldCodeMatcher(fieldId)) {
                 logger.error("Field ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }

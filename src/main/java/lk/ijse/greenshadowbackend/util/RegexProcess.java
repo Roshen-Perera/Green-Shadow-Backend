@@ -20,8 +20,8 @@ public class RegexProcess {
     private static final String STAFF_LAST_NAME_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String STAFF_DESIGNATION_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String STAFF_GENDER_PATTERN = "\\b[A-Z0-9]{2,}\\b";   // Example: Letters and spaces, 3-50 characters
-    private static final String STAFF_JOINED_DATE_PATTERN = "(0[1-9]|1[012])[- \\/.](0[1-9]|[12][0-9]|3[01])[- \\/.](19|20)\\d\\d";   // Example: Letters and spaces, 3-50 characters
-    private static final String STAFF_DOB_PATTERN = "(0[1-9]|1[012])[- \\/.](0[1-9]|[12][0-9]|3[01])[- \\/.](19|20)\\d\\d";   // Example: 12/12/2000
+    private static final String STAFF_JOINED_DATE_PATTERN = "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d";   // Example: Letters and spaces, 3-50 characters
+    private static final String STAFF_DOB_PATTERN = "(0[1-9]|1[012])[- /.](0[1-9]|[12][0-9]|3[01])[- /.](19|20)\\d\\d";   // Example: 12/12/2000
     private static final String STAFF_ADDRESS_1_NO_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String STAFF_ADDRESS_2_STREET_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
     private static final String STAFF_ADDRESS_3_CITY_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
@@ -55,7 +55,7 @@ public class RegexProcess {
     private static final String LOG_DETAILS_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
 
     private static final String USER_NAME_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
-    private static final String USER_EMAIL_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
+    private static final String USER_EMAIL_PATTERN = "^[\\w-\\.]+@([\\w-]+\\.)+[\\w-]{2,4}$";   // Example: Letters and spaces, 3-50 characters
     private static final String USER_PASSWORD_PATTERN = "^[A-Za-z ]{3,50}$";   // Example: Letters and spaces, 3-50 characters
 
     public static boolean fieldCodeMatcher(String fieldCode) {

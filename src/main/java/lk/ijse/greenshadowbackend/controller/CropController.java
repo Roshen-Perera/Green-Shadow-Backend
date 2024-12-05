@@ -135,7 +135,7 @@ public class CropController {
             byte[] imageBytes = cropImage.getBytes();
             base64CropImage = AppUtil.picToBase64(imageBytes);
 
-            if (RegexProcess.cropIdMatcher(cropCode)) {
+            if (!RegexProcess.cropIdMatcher(cropCode)) {
                 logger.info("Crop ID is not valid");
                 return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
             }
